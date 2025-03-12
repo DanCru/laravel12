@@ -12,6 +12,3 @@ Route::get('/chitiet/{id}', [TinController::class, 'lay1tin']);
 Route::get('/thongtinsv', [NguyenAnhDuc::class, 'thongtinsv']);
 
 
-Route::get('/thongtinsv', function (){
-       return view('hiii');
-});
