@@ -17,8 +17,6 @@
         .news-content { font-size: 1rem; color: #555; margin-bottom: 10px; }
         .news-category { font-size: 0.9rem; color: #888; margin-bottom: 5px; font-style: italic; }
         .news-views { font-size: 0.9rem; color: #888; font-style: italic; }
-        .btn-detail { display: inline-block; padding: 8px 15px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 5px; font-size: 0.9rem; margin-top: 10px; }
-        .btn-detail:hover { background-color: #0056b3; }
         @media (max-width: 768px) { .news-grid { grid-template-columns: 1fr; } }
         @media (max-width: 480px) { .news-card { padding: 15px; } .news-title { font-size: 1.1rem; } .news-content { font-size: 0.9rem; } }
     </style>
@@ -30,11 +28,10 @@
             @foreach($tin as $item)
                 <div class="news-column">
                     <div class="news-card">
-                        <p class="news-category">Thể loại: {{ $item->theLoai ? $item->theLoai->ten_the_loai : 'Chưa có thể loại' }}</p>
+                        <p class="news-category">Thể loại: {{ $item->ten_the_loai ?? 'Chưa có thể loại' }}</p>
                         <h2 class="news-title">{{ $item->tieu_de }}</h2>
                         <p class="news-content">{{ Str::limit($item->noi_dung, 100) }}</p>
                         <p class="news-views">Lượt xem: {{ $item->luot_xem }}</p>
-                        <a href="{{ route('tinchitiet', $item->id) }}" class="btn-detail">Xem chi tiết</a>
                     </div>
                 </div>
             @endforeach
