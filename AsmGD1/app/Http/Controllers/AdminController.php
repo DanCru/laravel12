@@ -29,12 +29,13 @@ class AdminController extends Controller
             'excerpt' => 'nullable|string',
             'content' => 'nullable|string',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'category' => 'nullable|string',
+            'category_id' => 'nullable',
+            'views' => 'nullable|integer',
             'published_at' => 'nullable|date',
         ]);
 
         $data = $request->all();
-
+        $data['views'] = (int) ($data['views'] ?? 0);
         if ($request->hasFile('thumbnail')) {
             $data['thumbnail'] = $request->file('thumbnail')->store('thumbnails', 'public');
         }
@@ -47,7 +48,8 @@ class AdminController extends Controller
     public function edit($id)
     {
         $news = News::find($id);
-        return view('admin.edit', compact('news'));
+        $categories = DB::table('categories')->get();
+        return view('admin.edit', compact('news', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -60,7 +62,7 @@ class AdminController extends Controller
             'excerpt' => 'nullable|string',
             'content' => 'nullable|string',
             'thumbnail' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
-            'category' => 'nullable|string',
+            'category_id' => 'nullable',
             'published_at' => 'nullable|date',
         ]);
 
@@ -68,7 +70,7 @@ class AdminController extends Controller
         $news->title = $request->input('title');
         $news->excerpt = $request->input('excerpt');
         $news->content = $request->input('content');
-        $news->category = $request->input('category');
+        $news->category_id = $request->input('category_id');
 
         // Xử lý published_at
         $news->published_at = $request->filled('published_at') 

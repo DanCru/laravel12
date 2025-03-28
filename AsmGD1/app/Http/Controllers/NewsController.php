@@ -48,9 +48,10 @@ class NewsController extends Controller
 
         // Lấy tất cả bài báo thuộc danh mục này, kèm theo quan hệ category
         $news = News::with('category')
-                    ->where('category_id', $id)
-                    ->orderBy('created_at', 'desc') // Sắp xếp theo ngày đăng mới nhất
-                    ->paginate(9); // Phân trang, 9 bài mỗi trang
+                ->where('category_id', $id)
+                ->orderBy('created_at', 'desc') // Sắp xếp theo ngày đăng mới nhất
+                ->paginate(9);
+
         $categories = DB::table('categories')->get();
 
         // Trả về view với danh mục và danh sách bài báo

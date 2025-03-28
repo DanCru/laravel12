@@ -27,12 +27,16 @@
             </div>
             <div class="mb-3">
                 <label for="category" class="form-label">Danh mục</label>
-                <select name="" id="">
+                <select name="category_id" id="">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
                 {{-- <input type="text" name="category_id" id="category" class="form-control" value="{{ old('category') }}"> --}}
+            </div>
+            <div class="mb-3">
+                <label for="views" class="form-label">Lượt xem</label>
+                <input type="text" name="views" id="views" class="form-control" value="0">
             </div>
             <div class="mb-3">
                 <label for="published_at" class="form-label">Ngày xuất bản</label>

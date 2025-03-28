@@ -18,7 +18,7 @@
                     <a href="{{ route('news.detail', $featuredNews->id) }}"><h2 class="article-card__title">{{ $featuredNews->title }}</h2></a>
                     <p class="article-card__excerpt">{{ $featuredNews->excerpt }}</p>
                     <div class="article-card__meta">
-                        <span class="article-card__category">{{ $featuredNews->category->name  }}</span>
+                        <span class="article-card__category">{{ $featuredNews->category ? $featuredNews->category->name : 'Không có danh mục' }}</span>
                         <span class="article-card__date">{{ $featuredNews->published_at }}</span>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
             <ul class="sidebar__list">
                 @foreach ($sidebarNews as $news)
                     <li class="sidebar__item">
-                        <a href="#" class="sidebar__link">{{ $news->title }}</a>
+                        <a href="{{ route('news.detail', $news->id) }}" class="sidebar__link">{{ $news->title }}</a>
                         <span class="sidebar__date">{{ $news->published_at }}</span>
                     </li>
                 @endforeach

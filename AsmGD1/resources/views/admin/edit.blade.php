@@ -32,7 +32,11 @@
                     </div>
                     <div class="mb-3">
                         <label for="category" class="form-label">Danh mục</label>
-                        <input type="text" name="category" id="category" class="form-control" value="{{ $news->category }}">
+                        <select name="category_id" id="">
+                            @foreach($categories as $category)
+                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label for="published_at" class="form-label">Ngày xuất bản</label>

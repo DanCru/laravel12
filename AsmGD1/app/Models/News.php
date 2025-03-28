@@ -15,6 +15,7 @@ class News extends Model
         'content',
         'thumbnail',
         'category_id',
+        'views',
         'published_at',
     ];
     public function category()
@@ -22,5 +23,8 @@ class News extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+    protected $attributes = [
+        'views' => 0,
+    ];
     protected $dates = ['published_at'];
 }
