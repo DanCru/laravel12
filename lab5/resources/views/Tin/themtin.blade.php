@@ -13,4 +13,4 @@
     <p><button type="submit" class="bg-warning p-2">Thêm tin</button></p>
     @csrf
 </form>
-@endsection
+@endsection 
